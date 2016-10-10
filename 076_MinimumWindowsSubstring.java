@@ -1,5 +1,5 @@
 // Sourse : https://leetcode.com/problems/minimum-window-substring/
-// Date   : 2016-10-06
+// Date   : 2016-10-09
 
 /***********************************************************************
  *
@@ -24,7 +24,7 @@
 
 public class Solution {
     public String minWindow(String s, String t) {
-        int[] hashmap = new int[256];
+        int[] hashmap = new int[128];
         char[] source = s.toCharArray();
         char[] target = t.toCharArray();
         for (char c : target) {
