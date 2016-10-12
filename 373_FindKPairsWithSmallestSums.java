@@ -14,6 +14,7 @@
  *
  **********************************************************************/
 
+// https://discuss.leetcode.com/topic/52953/share-my-solution-which-beat-96-42
 
 public class Solution {
     class Node {
