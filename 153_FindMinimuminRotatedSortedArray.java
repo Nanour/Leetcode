@@ -16,9 +16,9 @@ public class Solution {
         while (left < right) {
             int mid = left + (right-left)/2;
             if (nums[mid] < nums[right]) {
-                right = mid;     // (left, mid]
+                right = mid;     // (mid, right]
             } else {
-                left = mid + 1;  // (mid, right]
+                left = mid + 1;  // (left, mid]
             }
         }
         return nums[left]; // or return nums[right]; at the end, left == right
