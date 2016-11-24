@@ -10,6 +10,8 @@
  *
  **********************************************************************/
 
+// for each character, we choose to abbreviate it or not
+
 public class Solution {
     public List<String> generateAbbreviations(String word) {
         List<String> res = new ArrayList<String>();
