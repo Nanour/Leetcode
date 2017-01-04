@@ -15,21 +15,29 @@
 public class Solution {
     public int search(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
-        while (left < right) {
+        while (left <= right) {
             int mid = left + (right - left) / 2;
+            if (nums[mid] == target)
+                return mid;
+                
             if (nums[mid] >= nums[left]) {
-                if (target <= nums[mid] && target >= nums[left]) right = mid;
+                if (target < nums[mid] && target >= nums[left]) right = mid - 1;
                 else left = mid + 1;
             } else {
                 if (target > nums[mid] && target <= nums[right]) left = mid + 1;
-                else right = mid;
+                else right = mid - 1;
             }
         }
-        return nums[left] == target ? left : -1;
+        return -1;
     }
 }
 
-// solution 2:
+
+// solution 2:  两次binary search
+// https://discuss.leetcode.com/topic/3538/concise-o-log-n-binary-search-solution
+
+
+// solution 3:
 
 public class Solution {
     public int search(int[] nums, int target) {

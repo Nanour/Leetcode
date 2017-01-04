@@ -21,6 +21,9 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+// Time O(N)
+
 public class Solution {
     public List<List<Integer>> verticalOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();

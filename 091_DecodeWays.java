@@ -20,6 +20,8 @@
 // zero voids ways of the last because zero cannot be used separately set r1 = 0
 // possible two-digit letter, so new r1 is sum of both while new r2 is the old r1
 
+// 2ms beats 68.89%
+
 public class Solution {
     public int numDecodings(String s) {
         if (s.length() == 0 || s.charAt(0) == '0') return 0;

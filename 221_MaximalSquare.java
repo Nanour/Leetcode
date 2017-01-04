@@ -31,7 +31,7 @@ public class Solution {
                 } else {
                     square[j] = 0;
                 }
-                res = square[j] > res ? square[j] : res;
+                res = Math.max(square[j], res);
                 pre = temp;
             }
         }
@@ -55,7 +55,7 @@ public class Solution {
                 } else {
                     square[i][j] = 0;
                 }
-                res = square[i][j] > res ? square[i][j] : res;
+                res = Math.max(square[i][j], res);
             }
         }
         return res * res;

@@ -19,9 +19,7 @@ public class Solution {
         }
         int sum = 0, i = 0, len = Integer.MAX_VALUE, start = 0;
         while (i < nums.length) {
-            if (sum < s) {
-                sum += nums[i++];
-            } 
+            sum += nums[i++];
             while (sum >= s) {
                 len = Math.min(len, i-start);
                 sum -= nums[start++];

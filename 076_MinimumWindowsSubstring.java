@@ -30,7 +30,7 @@ public class Solution {
         for (char c : target) {
             hashmap[c]++;
         }
-        int slow = 0, fast = 0, count = 0, start = 0, len = Integer.MAX_VALUE;
+        int slow = 0, fast = 0, count = 0, len = Integer.MAX_VALUE;
         String res = "";
         while (fast < source.length) {
             if (hashmap[source[fast++]]-- > 0) {
@@ -39,7 +39,6 @@ public class Solution {
             while (count == target.length) {
                 if (len > (fast-slow)) {
                     len = fast-slow;
-                    start = slow;
                     res = s.substring(slow, fast);         // [slow,fast)
                 }
                 if (++hashmap[source[slow++]] > 0) {
@@ -62,7 +61,7 @@ public class Solution {
         for (char c : target) {
             hashmap[c]++;
         }
-        int slow = 0, fast = 0, count = 0, start = 0, len = Integer.MAX_VALUE;
+        int slow = 0, fast = 0, count = 0, len = Integer.MAX_VALUE;
         String res = "";
         while (fast < source.length) {
             if (hashmap[source[fast]] > 0) {
@@ -73,7 +72,6 @@ public class Solution {
             while (count == target.length) {
                 if (len > (fast-slow)) {
                     len = fast-slow;
-                    start = slow;
                     res = s.substring(slow, fast);         // [slow,fast)
                 }
                 ++hashmap[source[slow]];

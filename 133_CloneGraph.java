@@ -37,21 +37,57 @@
  *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
  * };
  */
+
+
+//DFS
+/**
+ * Definition for undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     List<UndirectedGraphNode> neighbors;
+ *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
+ * };
+ */
 public class Solution {
+    Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        HashMap<Integer, UndirectedGraphNode> map = new HashMap<Integer, UndirectedGraphNode>();
-        return dfs(node, map);
-    }
-    private UndirectedGraphNode dfs(UndirectedGraphNode node, HashMap<Integer, UndirectedGraphNode> map) {
         if (node == null) return null;
-        if (map.containsKey(node.label)) {
-            return map.get(node.label);
+        if (map.containsKey(node)) {
+            return map.get(node);
         }
         UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
-        map.put(node.label, newNode);
+        map.put(node, newNode);
         for (UndirectedGraphNode n : node.neighbors) {
-            newNode.neighbors.add(dfs(n, map));
+            newNode.neighbors.add(cloneGraph(n));
         }
+        return newNode;
+    }
+}
+
+//BFS
+public class Solution {
+    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+         if (node == null) return null;
+        
+        UndirectedGraphNode newNode = new UndirectedGraphNode(node.label); //new node for return
+        HashMap<Integer, UndirectedGraphNode> map = new HashMap(); //store visited nodes
+        
+        map.put(newNode.label, newNode); //add first node to HashMap
+        
+        LinkedList<UndirectedGraphNode> queue = new LinkedList(); //to store **original** nodes need to be visited
+        queue.add(node); //add first **original** node to queue
+        
+        while (!queue.isEmpty()) { //if more nodes need to be visited
+            UndirectedGraphNode n = queue.pop(); //search first node in the queue
+            for (UndirectedGraphNode neighbor : n.neighbors) {
+                if (!map.containsKey(neighbor.label)) { //add to map and queue if this node hasn't been searched before
+                    map.put(neighbor.label, new UndirectedGraphNode(neighbor.label));
+                    queue.add(neighbor);
+                }
+                map.get(n.label).neighbors.add(map.get(neighbor.label)); //add neighbor to new created nodes
+            }
+        }
+        
         return newNode;
     }
 }

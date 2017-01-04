@@ -26,14 +26,11 @@
 public class BSTIterator {
     private Stack<TreeNode> stack;
     public BSTIterator(TreeNode root) {
-        stack = new Stack<>();
+        stack = new Stack<TreeNode>();
         TreeNode curr = root;
         while (curr != null) {
             stack.push(curr);
-            if(curr.left != null)
-                curr = curr.left;
-            else
-                break;
+            curr = curr.left;
         }
     }
 
@@ -44,17 +41,11 @@ public class BSTIterator {
 
     /** @return the next smallest number */
     public int next() {
-        TreeNode node = stack.pop();             // next() time complexity is O(1)
-        TreeNode curr = node;
-        if (curr.right != null) {
-            curr = curr.right;
-            while (curr != null) {                 
-                stack.push(curr);
-                if(curr.left != null)
-                    curr = curr.left;
-                else
-                    break;
-            }
+        TreeNode node = stack.pop();          // 此处需注意如果next为null应当返回什么值
+        TreeNode next = node.right;
+        while (next != null) {
+            stack.push(next);
+            next = next.left;
         }
         return node.val;
     }
